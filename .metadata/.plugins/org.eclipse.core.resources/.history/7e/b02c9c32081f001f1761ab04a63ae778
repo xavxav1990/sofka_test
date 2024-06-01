@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: test
+    
+logging:
+  level:
+    '[com.example.demo]': DEBUG
+
+server:
+  error:
+    include-message: always 

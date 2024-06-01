@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/basedatos_sofka
+    username: xloaiza
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+
+server:
+ port: 8085
+  error:
+    include-message: always
+    
+logging:
+  level:
+    root: DEBUG
+

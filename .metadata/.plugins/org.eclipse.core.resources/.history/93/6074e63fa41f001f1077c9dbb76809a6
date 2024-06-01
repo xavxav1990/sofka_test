@@ -1,0 +1,5 @@
+package com.sofka.demo.config;
+
+public class RabbitMQConfig {
+
+}

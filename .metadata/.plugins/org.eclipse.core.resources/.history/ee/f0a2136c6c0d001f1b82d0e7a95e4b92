@@ -1,0 +1,86 @@
+package com.example.demo;
+
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.models.productos;
+
+
+
+@RestController
+public class Rutas {
+	
+	
+private final Logger  logger = LoggerFactory.getLogger(TestApplication.class);
+	
+	
+	
+	@GetMapping("/test")
+	String testRoute() {
+		return "testiando ruta con getMapping :)";
+	}
+	
+	@GetMapping("/productos")
+	String leerProductos1() {
+		return "Ingresa el producto id";
+	}
+	
+	@GetMapping("/productos/{id}/texto/{nombre}")
+	String leerProductos(@PathVariable int id, @PathVariable String nombre ) {
+		return "Ingresa el producto id" + id +" nombre "+nombre;
+	}
+	
+	@GetMapping("/productos/{id}")
+	String queryParam(@PathVariable int id, @RequestParam String params,  @RequestParam String casa ) {
+		return "Ingresa el producto id" + id +" nombre "+params+" casa "+casa;
+	}
+	
+	@PostMapping("/insrmanual")
+	String insertaManual(@RequestBody Map<String, Object> productomanual) {
+		
+		productomanual.keySet().forEach(llave ->{
+			
+			logger.debug("llave: {}, productomanual: {}  ",llave, productomanual.get(llave));			
+			
+		} );
+		
+		
+		return "insertado manual";
+			
+		
+	}
+	
+	@PostMapping("/inserta")
+	String insertaProducto(@RequestBody productos producto) {
+			logger.debug("id: {}, nombre: {}, descripcion: {} ", producto.idProducto, producto.nombre, producto.descripcion);
+		return "insertado";
+	}
+	
+	@GetMapping("/saludar")
+	@ResponseStatus(value = HttpStatus.MOVED_PERMANENTLY, reason = "Movida por cambio de version")
+	String segundaRuta() {
+		return "testiando segunda ruta con getMapping :)";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}
